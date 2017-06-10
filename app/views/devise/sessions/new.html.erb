@@ -1,0 +1,40 @@
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+          <p class="panel-title text-center">Shall we play a game?</p>
+        </div>
+
+        <div class="panel-body">
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="form-group">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, class: 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :password %>
+              <!-- <span class="link_forgot_password"><a href="<%= new_user_password_path  %>">Forgot password?</a></span> -->
+              <br />
+              <%= f.password_field :password, class: 'form-control' %>
+            </div>
+
+            <% if devise_mapping.rememberable? -%>
+              <div class="form-group">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+              </div>
+            <% end -%>
+
+            <div class="actions">
+              <%= f.submit "Submit", class: "btn btn-primary btn-lg center-block" %>
+              <a href='/users/sign_up' >Create account? </a>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <!-- auto reg -->
+  </div>
+</div>

@@ -1,0 +1,163 @@
+
+body > h1 {
+  padding: 10px;
+}
+
+/* ------------------------------------- */
+div.gallery {
+    border: 1px solid #ccc;
+}
+
+div.gallery:hover {
+    border: 1px solid #777;
+}
+/*
+div.gallery img {
+    width: 100%;
+    height: auto;
+}*/
+
+div.desc {
+    padding: 15px;
+    text-align: center;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.responsive {
+   /* padding: 0 6px;
+    float: left;
+    width: 24.99999%;*/
+}
+/* ------------------------------------- */
+
+
+div.wrapper {
+  padding: 5px;
+  width: 900px;
+  height: 700px;
+  border: 0px solid black;
+  overflow: hidden; /* will contain if #first is longer than #second */
+}
+#movie_poster {
+  padding: 5px;
+  width: 40%;
+  height: 700px;
+  float:left; /* add this */
+  border: 0px solid red;
+}
+#movie_actors {
+  padding: 5px;
+  width: 60%;
+  border: 0px solid green;
+  overflow: hidden; /* if you don't want #second to wrap below #first */
+}
+
+
+
+
+
+.div_photo_select {
+  border: 1px solid lightgray;
+  margin: 10px;
+  width: 50%;
+  float: left;
+}
+.div_photo_select:hover {
+  border: 1px solid #337ab7;
+  box-shadow: 10px 10px 5px #888888;
+}
+
+.poster_container {
+  width: 300px;
+  height: 425px;
+  float: left;
+  text-align: center;
+  margin-right: 20px;
+}
+
+.photo_container {
+  width: 92px;
+  height: 138px;
+  float: left;
+  text-align: center;
+  margin: 10px;
+}
+
+.actor_container {
+  width: 200px;
+  height: 20px;
+  float: left;
+  text-align: center;
+}
+
+#movie_name {
+  padding-left: 5px;
+}
+
+#btn_search {
+  margin-left: 10px;
+  border-radius: 7px;
+}
+
+#scores_table > tbody > tr:nth-child(odd) {
+   background-color: #F6F9ED;
+}
+
+#scores_table_wrapper {
+  margin-top: 70px;
+}
+
+.job_action {
+  border-radius: 5px;
+  color: black;
+  background-color: #dcdcdc;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.job_action:hover {
+  background-color: gray;
+  color: white;
+}
+
+.cancel_link {
+  color: red;
+}
+
+.job_field {
+  width: 400px;
+}
+
+.job_label {
+  font-weight: bold;
+  padding-right: 10px;
+  text-align: right;
+  color: black;
+}
+
+.job_field {
+  font-family: Courier;
+  color: black;
+}
+
+.required {
+  color: red;
+}
+
+td.job_field,
+td.job_label {
+  padding-bottom: 1em;
+}
+
+.div_actions {
+  margin-top: 50px;
+}
+
+.div_show_job {
+  border: 1px solid lightgray;
+  padding: 10px;
+  width: 50%;
+}
