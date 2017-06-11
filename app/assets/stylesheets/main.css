@@ -11,11 +11,6 @@ div.gallery {
 div.gallery:hover {
     border: 1px solid #777;
 }
-/*
-div.gallery img {
-    width: 100%;
-    height: auto;
-}*/
 
 div.desc {
     padding: 15px;
@@ -33,40 +28,88 @@ div.desc {
 }
 /* ------------------------------------- */
 
+.div_movie_list {
+  margin: 20px;
+}
 
-div.wrapper {
-  padding: 5px;
-  width: 900px;
-  height: 700px;
-  border: 0px solid black;
-  overflow: hidden; /* will contain if #first is longer than #second */
-}
-#movie_poster {
-  padding: 5px;
-  width: 40%;
-  height: 700px;
-  float:left; /* add this */
-  border: 0px solid red;
-}
 #movie_actors {
   padding: 5px;
   width: 60%;
   border: 0px solid green;
-  overflow: hidden; /* if you don't want #second to wrap below #first */
+  overflow: hidden;
+  margin-top: 65px;
+  float: left;
+}
+
+#movie_actors > img {
+  margin: 2px;
+  max-height: 100%; 
+  max-width: 100%;
+}
+
+#movie_actors > div {
+  float: left;
+  margin: 5px;
+  border: 0px solid lightblue;
+}
+
+div.wrapper {
+  padding: 5px;
+  width: 1200px;
+  border: 0px solid lightgray;
+  overflow: hidden; 
+}
+#movie_actors > div > label {
+  margin-top: 1px;
+  margin-bottom: 20px;
+  background-color: antiquewhite;
+  font-size: .7em;
+  padding: 5px;
+  max-width: 170px;
+}
+
+#movie_actor_names {
+  border: 0px solid lightblue;
+  padding: 5px;
+  width: 60%;
+  overflow: hidden;
+  margin-top: 65px;
+  float: left;
+}
+#movie_actor_names  > div {
+  float: left;
+  margin: 5px;
+  border: 0px solid red;
 }
 
 
+#movie_actor_names > div > label {
+  background-color: green;
+  color: white;
+  font-weight: normal;
+  font-size: .7em;
+  padding: 5px;
+  min-width: 94px;
+  max-width: 94px;
+}
 
+#movie_poster {
+  padding: 5px;
+  width: 30%;
+  height: 800px;
+  float:left;
+  border: 0px solid red;
+}
 
 
 .div_photo_select {
-  border: 1px solid lightgray;
+  border: 0px solid lightgray;
   margin: 10px;
   width: 50%;
   float: left;
 }
 .div_photo_select:hover {
-  border: 1px solid #337ab7;
+  border: 0px solid #337ab7;
   box-shadow: 10px 10px 5px #888888;
 }
 
@@ -110,54 +153,11 @@ div.wrapper {
   margin-top: 70px;
 }
 
-.job_action {
-  border-radius: 5px;
-  color: black;
-  background-color: #dcdcdc;
-  padding-right: 10px;
-  padding-left: 10px;
-}
-
-.job_action:hover {
-  background-color: gray;
-  color: white;
-}
-
 .cancel_link {
   color: red;
-}
-
-.job_field {
-  width: 400px;
-}
-
-.job_label {
-  font-weight: bold;
-  padding-right: 10px;
-  text-align: right;
-  color: black;
-}
-
-.job_field {
-  font-family: Courier;
-  color: black;
 }
 
 .required {
   color: red;
 }
 
-td.job_field,
-td.job_label {
-  padding-bottom: 1em;
-}
-
-.div_actions {
-  margin-top: 50px;
-}
-
-.div_show_job {
-  border: 1px solid lightgray;
-  padding: 10px;
-  width: 50%;
-}

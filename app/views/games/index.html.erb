@@ -1,129 +1,15 @@
-<h4></h4>
 
 <div style='margin: 20px;'>
   <span style='color: black;font-weight: bold;'>Shall we play a game, <%= current_user.first_name %>?  </span><input type='text' id='movie_name' placeholder='Enter movie name...'><button class='btn btn-default' id='btn_search'>Search</button>
 </div>
 
-
-
 <div class='container'>
-  <div id='div_movie_list' style='margin: 20px;'></div>  
+  <div id='div_movie_list' ></div>  
 </div>
 
 <div class='wrapper'>
-  <div id='movie_poster'>poster goes here</div>  
-  <div id='movie_actors'>list of actor pics go here</div>  
+  <div id='movie_poster'></div>  
+  <div id='movie_actors'></div>  
+  <div id='movie_actor_names'></div>  
 </div>
 
-
-
-<%
-=begin  
-%>
-  <!--  
-    movie['id']
-    movie['poster']
-    movie['title']
-    movie['release_date']
-  -->
-
-  <% @movies&.each do |m| %>
-    <h2>m['title']</h2>
-    <div class='container'>
-
-      <div class="responsive">
-        <div class="poster_container">
-          <img src="<%= m['poster'] %>" alt="poster" ><br />
-          <span>ID: <%= m['id'] %></span><br />
-          <span>TITLE: <%= m['title'] %> </span><br />
-          <span>RELEASE DATE: <%= m['release_date'] %> </span>
-        </div>
-      </div>
-
-    </div>
-  <% end %>
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ==================================================================================================== -->
-
-
-<form>
-  <div class="responsive">
-    <div class="poster_container">
-      <img src="<%= movie['poster']['img_src'] %>" alt="poster" >
-    </div>
-  </div>
-
-  <% movie['photos']&.each do |m| %>
-    <div class="responsive">
-      <div class="photo_container">
-        <img src="<%= m.img_src %>" alt="<%= m.actor_name %>" >
-        <div class="desc"><%= m.actor_name %></div>              <!-- enable drag/drop into here ? -->
-      </div>
-    </div>
-  <% end %>
-
-  <button class='btn btn-default'>Submit</button>
-</form>
-
-<%
-=end
-%>
-<!-- ==================================================================================================== -->
-
-
-
-<!--   original
-  
-  <div class="responsive">
-    <div class="poster_container">
-      <img src="http://image.tmdb.org/t/p/w185/95OOYSeegOX4XW8nAeFJSIdxfM4.jpg" alt="poster" >
-    </div>
-  </div>
- 
-  <div class="responsive">
-    <div class="photo_container">
-      <img src="http://image.tmdb.org/t/p/w92/w1KLRK5J5SRXkqONL9WS8exhKgp.jpg" alt="Trolltunga Norway" >
-      <div class="desc">name goes here</div>
-    </div>
-  </div>
-
-  <div class="responsive">
-    <div class="photo_container">
-      <img src="http://image.tmdb.org/t/p/w92/pxJrZluJHhbWRo2QXAG99FvXUi7.jpg" alt="Trolltunga Norway" >
-      <div class="desc">name goes here</div>
-    </div>
-  </div>
-
-  <div class="responsive">
-    <div class="photo_container">
-      <img src="http://image.tmdb.org/t/p/w92/2qzMYzWB90Z46NroCq82IYmrAig.jpg" alt="Trolltunga Norway" >
-      <div class="desc">name goes here</div>
-    </div>
-  </div>
-
-  <div class="responsive">
-    <div class="photo_container">
-      <img src="http://image.tmdb.org/t/p/w92/yrQcTNmGWNVp871D9fbjNpN6LpV.jpg" alt="Trolltunga Norway" >
-      <div class="desc">name goes here</div>
-    </div>
-  </div>
-
-  <div class="responsive">
-    <div class="photo_container">
-      <img src="http://image.tmdb.org/t/p/w92/vmfmiGO6cusQn9B8jw9oLPnSYr6.jpg" alt="Trolltunga Norway" > 
-      <div class="desc">name goes here</div>
-    </div>
-  </div> -->
-
- 

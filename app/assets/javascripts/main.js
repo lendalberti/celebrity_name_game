@@ -7,6 +7,9 @@ $( document ).ready(function() {
   var list_photo_url = base_url + base_photo_size_list + '/';
   var display_photo_url = base_url + base_photo_size_display + '/';
 
+  var MAX_CAST = 10;
+
+
   $('#scores_table').DataTable({
     "order": [[ 0, "desc" ]]
   });
@@ -17,8 +20,12 @@ $( document ).ready(function() {
     var movie_select = '<h4 style="color: #337ab7;">Multiple movies with a similar title found - select one:</h4>';
     var movie_display = '';
     var actor_display = '';
+    var actor_names = [];
 
     console.log('Searching for movie: ' + movie_name);
+    $('#movie_poster').html('');
+    $('#movie_actors').html('');
+    $('#movie_actor_names').html('');
 
     $.ajax({
       url: '/movies/find/'+movie_name,
@@ -59,32 +66,45 @@ $( document ).ready(function() {
               type: 'GET',
               success: function(res) {
                 var m = res;
-                // if (res.movies.length == 1) { 
-                  // var m = res.movies[0];
-                  debugger;
-                  $('#div_movie_list').html("");
+                var cast = [];
+                var cast_count = 0;
+                $('#div_movie_list').html("");
 
-                  movie_display += "<h2 style='padding-left: 15px;'>"+m.title+"</h2>";
-                  movie_display += "<div class='container'><div class='responsive'> <div class='poster_container'>  ";
-                  movie_display += "<img src='"+  display_photo_url + m.poster+"' alt='poster' ><br />";
-                  movie_display += "<span>Released: "+m.release_date+"</span><br />";
-                  movie_display += "<span>Overview: "+m.overview+"</span><br />";
-                  movie_display += "</div></div></div>";
-                  $('#movie_poster').html( movie_display );
+                movie_display += "<h2 style='padding-left: 25px;'>"+m.title+"</h2>";
+                movie_display += "<div class='container'><div class='responsive'> <div class='poster_container'>  ";
+                movie_display += "<img src='"+  display_photo_url + m.poster+"' alt='poster' ><br />";
+                movie_display += "<span>Released: "+m.release_date+"</span><br />";
+                movie_display += "<span>Overview: "+m.overview+"</span><br />";
+                movie_display += "</div></div></div>";
+                $('#movie_poster').html( movie_display );
 
-                  $.each( m.cast, function(i, actor) {
-                    actor_display += "<img src='"+  list_photo_url + actor.profile_path+"' alt='actor' >";
-                  });
-                  $('#movie_actors').html( actor_display );
+                fullCast = shuffle(m.cast);
+                $.each( fullCast, function(i,cast) {
+                  if ( cast_count == MAX_CAST ) {
+                    return false;
+                  }
 
+                  if (cast.profile_path != null)  {
+                    actor_display += "<div><img id='actor_id_"+cast.id+"' src='"+  list_photo_url + cast.profile_path+"' alt='actor'  width='120' height='170' >";
+                    // actor_display += "<br /><label>[drop name here]</label></div>";
+                    actor_display += "<br /><label>"+cast.name+"</label></div>";
+                    // actor_names += "<div><label id='actor_name_id_"+cast[i].id+"'>"+cast[i].name+"</label></div>";
+                    actor_names[i] = { id: cast.id,  name: cast.name};
+                    cast_count++;
+                  }
 
- // <div id='movie_poster'>poster goes here</div>  
- //  <div id='movie_actors'>list of actor pics go here</div>  
+                });
 
-                // } 
-                // else {
-                //   $('#div_movie_list').html('Movie not found...');
-                // }
+                $('#movie_actors').html( actor_display );
+
+                // names = shuffle( actor_names );
+                // for ( i=0; i<MAX_ACTORS; i++ ) {  
+                //   if (names[i].name != null)  {
+                //     actor_names += "<div><label id='actor_name_id_"+names[i].id+"'>"+names[i].name+"</label></div>";
+                //   }
+                // };
+                // $('#movie_actor_names').html( actor_names );
+
               },
               error: function(jqXHR, textStatus, errorThrown) {
                 alert("Can't display movie; error = " + errorThrown + ", " + textStatus);
@@ -94,7 +114,7 @@ $( document ).ready(function() {
           });
         }
         else {
-          $('#div_movie_list').html('Movie not found...');
+          $('#div_movie_list').html('Movie not found...'); 
         }
 
       },
@@ -105,6 +125,29 @@ $( document ).ready(function() {
     });
 
   });
+
+  // Fisher-Yates (aka Knuth) Shuffle: unabashedly pilfered from
+  //        https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+  function shuffle(array) {
+    if ( array ) {
+      var currentIndex = array.length, temporaryValue, randomIndex;
+
+      // While there remain elements to shuffle...
+      while (0 !== currentIndex) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+      }
+      return array;
+    }
+    return null;
+  }
 
 
 });
