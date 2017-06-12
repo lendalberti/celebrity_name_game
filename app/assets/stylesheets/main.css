@@ -1,6 +1,8 @@
 
+
 body > h1 {
   padding: 10px;
+
 }
 
 /* ------------------------------------- */
@@ -21,12 +23,12 @@ div.desc {
     box-sizing: border-box;
 }
 
-.responsive {
-   /* padding: 0 6px;
-    float: left;
-    width: 24.99999%;*/
-}
 /* ------------------------------------- */
+
+.logged_in {
+  padding-right: 50px;
+  font-size: 1.3em;
+}
 
 .photo_caption,
 label[id^="actor_name_id_"] {

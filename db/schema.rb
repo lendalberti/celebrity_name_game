@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170609202304) do
+ActiveRecord::Schema.define(version: 20170612160338) do
 
   create_table "scores", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "score", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "movie", limit: 255
   end
 
   create_table "users", force: :cascade do |t|

@@ -5,7 +5,8 @@
   <thead>
     <tr>
       <th>ID</th>
-      <th>Name</th>
+      <th>Player</th>
+      <th>Movie</th>
       <th>Score</th>
       <th>Date Played</th>
     </tr>
@@ -16,6 +17,7 @@
       <tr>
         <td><%= sc.id %></td>
         <td><%= sc.user.fullname %></td>
+        <td><%= sc.movie %></td>
         <td><%= sc.score %></td>
         <td><%= sc.created_at.strftime("%b %e, %Y") %></td>
       </tr>

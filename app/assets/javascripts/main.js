@@ -13,14 +13,14 @@ $( document ).ready(function() {
     "order": [[ 0, "desc" ]]
   });
 
-
-
   $('#btn_search').on('click', function() {
     var movie_name = encodeURI( $('#movie_name').val() );
     if ( !movie_name ) {
       alert("Enter movie name...");
       return false;
     }
+
+    var movie_id = '';
     var movie_list_html = '';
     var movie_display = '';
     var actor_display = '';
@@ -54,13 +54,14 @@ $( document ).ready(function() {
           $('[id^=movie_id_]').on('click', function() {
             var tmp   =  $(this).attr('id');
             var match = /^movie_id_(\d+)$/.exec(tmp);
-            var movie_id = RegExp.$1;
+            movie_id = RegExp.$1;
             console.log('selecting movie id:' + movie_id);
 
             $.ajax({
               url: '/movies/show/'+movie_id,
               type: 'GET',
               success: function(res) {
+                debugger;
                 var m = res;
                 var cast = [];
                 var cast_count = 0;
@@ -102,11 +103,46 @@ $( document ).ready(function() {
                 });                
                 $('#div_cast_names').html( name_buttons );
 
+                // ----------------------------- Get score
                 $('#button_get_score').on('click', function() {
-                  alert("You got 2 out of 5 correct; score = 40");
-                  window.location = '/scores';
+                  var correct_answers = 0;
+                  var postData = [];
+                  var score = 0;
+
+                  $.each( $('#div_cast_photos > div'), function(k,v) {
+                    debugger;
+                    photo_id = v.children[0].id;
+                    name_id  = v.children[2].children[0].id
+
+                    if ( photo_name_match(photo_id,name_id) ) {
+                      correct_answers += 1;
+                    }
+                    else {
+                      // ---- TODO: highlight incorrect match, something like change opacity, set border, etc. here... 
+                    }
+                  });
+                  score = (correct_answers/MAX_CAST)*100;
+                  alert("You got "+correct_answers+" out of "+MAX_CAST+" correct; score = "+ score );
+
+                  // ----------------------------- Save score
+                  $.ajax({
+                    url: '/scores',
+                    type: 'POST',
+                    data: { movie: movie_id, score: score },
+                    success: function(res) {
+                      if ( res.status == 'ok' ) {
+                        window.location = '/scores';
+                      }
+                      else {
+                        alert("Couldn't save score...");
+                      }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                      alert("Can't save this score; error = " + errorThrown + ", " + textStatus);
+                      console.log("Can't save this score; error = " + errorThrown + ", " + textStatus);
+                    }
+                  });
                 });
-               
               },
               error: function(jqXHR, textStatus, errorThrown) {
                 alert("Can't display movie; error = " + errorThrown + ", " + textStatus);
@@ -135,15 +171,9 @@ $( document ).ready(function() {
   function shuffle(array) {
     if ( array ) {
       var currentIndex = array.length, temporaryValue, randomIndex;
-
-      // While there remain elements to shuffle...
       while (0 !== currentIndex) {
-
-        // Pick a remaining element...
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
-
-        // And swap it with the current element.
         temporaryValue = array[currentIndex];
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
@@ -152,6 +182,15 @@ $( document ).ready(function() {
     }
     return null;
   }
+
+  function photo_name_match(a, b) {
+    var match   = /^\w+_(\d+)$/.exec(a);
+    var id1 = RegExp.$1;
+    match   = /^\w+_(\d+)$/.exec(b);
+    var id2 = RegExp.$1;
+    return id1 == id2 ? true : false;
+  }
+
 
   function compare(a,b) {
     if (a.name < b.name)
@@ -171,7 +210,6 @@ $( document ).ready(function() {
 
   function drop(event) {
       event.preventDefault();
-      debugger;
       var data = event.dataTransfer.getData("Text");
       event.target.appendChild(document.getElementById(data));
       var old_name = $('#'+data).html();
