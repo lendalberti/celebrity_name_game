@@ -28,11 +28,16 @@ div.desc {
 }
 /* ------------------------------------- */
 
+.photo_caption,
+label[id^="actor_name_id_"] {
+  color: black;
+}
+
 .div_movie_list {
   margin: 20px;
 }
 
-#movie_actors {
+#div_cast_photos {
   padding: 5px;
   width: 60%;
   border: 0px solid green;
@@ -41,16 +46,17 @@ div.desc {
   float: left;
 }
 
-#movie_actors > img {
+#div_cast_photos > img {
   margin: 2px;
   max-height: 100%; 
   max-width: 100%;
 }
 
-#movie_actors > div {
+#div_cast_photos > div {
   float: left;
   margin: 5px;
   border: 0px solid lightblue;
+
 }
 
 div.wrapper {
@@ -59,16 +65,17 @@ div.wrapper {
   border: 0px solid lightgray;
   overflow: hidden; 
 }
-#movie_actors > div > label {
+#div_cast_photos > div > label {
   margin-top: 1px;
   margin-bottom: 20px;
   background-color: antiquewhite;
   font-size: .7em;
   padding: 5px;
-  max-width: 170px;
+  width: 120px;
+  height: 25px;
 }
 
-#movie_actor_names {
+#div_cast_names {
   border: 0px solid lightblue;
   padding: 5px;
   width: 60%;
@@ -76,24 +83,25 @@ div.wrapper {
   margin-top: 65px;
   float: left;
 }
-#movie_actor_names  > div {
+#div_cast_names  > div {
   float: left;
   margin: 5px;
   border: 0px solid red;
 }
 
-
-#movie_actor_names > div > label {
-  background-color: green;
-  color: white;
-  font-weight: normal;
+#div_cast_names > div > label {
+  background-color: antiquewhite;
+  color: black;
+  font-weight: bold;
   font-size: .7em;
   padding: 5px;
-  min-width: 94px;
-  max-width: 94px;
+  min-width: 120px;
+  max-width: 120px;
+  border-radius: 7px;
+  cursor: move;
 }
 
-#movie_poster {
+#div_movie_poster {
   padding: 5px;
   width: 30%;
   height: 800px;
@@ -103,14 +111,26 @@ div.wrapper {
 
 
 .div_photo_select {
-  border: 0px solid lightgray;
+  border: 1px solid lightgray;
   margin: 10px;
   width: 50%;
   float: left;
+  padding: 5px;
 }
 .div_photo_select:hover {
-  border: 0px solid #337ab7;
+  border: 1px solid gray;
   box-shadow: 10px 10px 5px #888888;
+}
+
+
+#movie_list_container {
+  width: 300px;
+  float: left;
+  text-align: center;
+  /*margin-right: 20px;*/
+  border: 1px solid red;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .poster_container {
@@ -138,6 +158,7 @@ div.wrapper {
 
 #movie_name {
   padding-left: 5px;
+  width: 300px;
 }
 
 #btn_search {
